@@ -328,7 +328,7 @@ function inverse(c) {
 
 function set_cookie(colors) {
     var exdate = new Date();
-    exdate.setDate(exdate.getDate() + 365);
+    exdate.setDate(exdate.getDate() + 3650);
     document.cookie =
         "colors=bg:" + colors.bg +
         "-shadow:" + colors.shadow +
