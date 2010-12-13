@@ -104,10 +104,15 @@ function key_down(evt, div_id) {
 
     if (k == 27 || id == 'clr') { // escape
         button_click('clr', 1);
+        reset();
+        if (id != '')
+            key_up(null, id);
     }
     else if (k == 8 || id == 'bksp') { // backspace
         button_click('bksp', 1);
         cut_data();
+        if (id != '')
+            key_up(null, id);
     }
     else if (k == 13) { // enter
         button_click('equals', 1);
@@ -128,15 +133,20 @@ function key_up(evt, div_id) {
     var handled = true;
 
     if (k == 27 || id == 'clr') { // escape
-        button_click('clr', 2);
-        reset();
+        if (id == '')
+            button_click('clr', 2);
+        else
+            setTimeout("button_click('clr', 2)", 150);
     }
     else if (k == 8 || id == 'bksp') { // backspace
-        button_click('bksp', 2);
+        if (id == '')
+            button_click('bksp', 2);
+        else
+            setTimeout("button_click('bksp', 2)", 150);
     }
     else if (k == 13) { // enter
-        button_click('equals', 2);
         calculate();
+        button_click('equals', 2);
     }
     else {
         handled = false;
@@ -196,15 +206,16 @@ function cut_data() {
 
 function button_click(button_id, mode) {
     var btn = document.getElementById(button_id);
+    var colors = get_cookie();
 
     switch (mode) {
         case 1: // button down
-            btn.style.backgroundColor = '#000000';
-            btn.style.color = '#ffffff';
+            btn.style.backgroundColor = '#' + colors.btnfont;
+            btn.style.color = '#' + colors.btn;
             break;
         case 2: // button up
-            btn.style.backgroundColor = '#8c8c8c';
-            btn.style.color = '#000000';
+            btn.style.backgroundColor = '#' + colors.btn;
+            btn.style.color = '#' + colors.btnfont;
             break;
         case 3: // button down, then up
             button_click(button_id, 1);
@@ -415,4 +426,14 @@ function get_cookie() {
         }
     }
     return ret;
+}
+
+function highlight_button(btn) {
+    var colors = get_cookie();
+    btn.style.backgroundColor = '#' + colors.bg;
+}
+
+function unhighlight_button(btn) {
+    var colors = get_cookie();
+    btn.style.backgroundColor = '#' + colors.btn;
 }
