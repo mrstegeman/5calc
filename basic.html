@@ -7,9 +7,16 @@
         <link rel="shortcut icon" type="image/png" href="./media/5calc.png">
         <script type="text/javascript" src="./js/5calc.js"></script>
         <script type="text/javascript" src="./js/parser.js"></script>
+        <script type="text/javascript" src="./jscolor/jscolor.js"></script>
     </head>
     <body>
         <div id="outer">
+            <div id="navbar">
+                <ul id="navlist">
+                    <li><a href="./basic.html">Basic</a></li>
+                    <li><a href="#" onclick="show_settings();">Preferences</a></li>
+                </ul>
+            </div>
             <div id="middle">
                 <div id="inner">
                     <div id="error"></div>
@@ -38,6 +45,42 @@
                         <div id="add" class="button" onclick="key_press(null, 'add');">+</div>
                     </div>
                 </div>
+            </div>
+            <div id="settings">
+                <table>
+                    <tr>
+                        <td>Background:</td>
+                        <td><input id="bgcolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Shadow:</td>
+                        <td><input id="shadowcolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Calculator:</td>
+                        <td><input id="calccolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Display:</td>
+                        <td><input id="dispcolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Display font:</td>
+                        <td><input id="dispfontcolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Button:</td>
+                        <td><input id="btncolor" class="color" /></td>
+                    </tr>
+                    <tr>
+                        <td>Button font:</td>
+                        <td><input id="btnfontcolor" class="color" /></td>
+                    </tr>
+                </table>
+                <br />
+                <input class="settings_btn" id="settings_reset" type="button" value="Defaults" onclick="apply_settings_in_window();" />
+                <input class="settings_btn" id="settings_cancel" type="button" value="Cancel" onclick="cancel_settings();" />
+                <input class="settings_btn" id="settings_save" type="button" value="Save" onclick="save_settings();" />
             </div>
         </div>
     </body>

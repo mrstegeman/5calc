@@ -2,6 +2,11 @@ window.onload = function() {
     document.onkeypress = key_press;
     document.onkeydown = key_down;
     document.onkeyup = key_up;
+    apply_settings(get_cookie());
+};
+
+window.onunload = function () {
+    set_cookie();
 };
 
 function key_press(evt, div_id) {
@@ -210,4 +215,151 @@ function button_click(button_id, mode) {
             setTimeout("button_click('" + button_id + "', 2)", 150);
             break;
     }
+}
+
+function show_settings() {
+    document.getElementById('settings').style.display = 'block';
+}
+
+function cancel_settings() {
+    document.getElementById('settings').style.display = 'none';
+}
+
+function save_settings() {
+    document.getElementById('settings').style.display = 'none';
+}
+
+function load_settings() {
+}
+
+function apply_settings_in_window(colors) {
+    var defaults = {
+        bg: 'E0E0E0',
+        shadow: '000000',
+        calc: 'C0C0C0',
+        disp: 'FFFFFF',
+        dispfont: '000000',
+        btn: '8C8C8C',
+        btnfont: '000000',
+    };
+
+    if (!colors)
+        colors = defaults;
+
+    var bg = document.getElementById('bgcolor');
+    var shadow = document.getElementById('shadowcolor');
+    var calc = document.getElementById('calccolor');
+    var disp = document.getElementById('dispcolor');
+    var dispfont = document.getElementById('dispfontcolor');
+    var btn = document.getElementById('btncolor');
+    var btnfont = document.getElementById('btnfontcolor');
+
+    bg.value = colors.bg;
+    bg.style.backgroundColor = '#' + colors.bg;
+    bg.style.color = '#' + inverse(colors.bg);
+
+    shadow.value = colors.shadow;
+    shadow.style.backgroundColor = '#' + colors.shadow;
+    shadow.style.color = '#' + inverse(colors.shadow);
+
+    calc.value = colors.calc;
+    calc.style.backgroundColor = '#' + colors.calc;
+    calc.style.color = '#' + inverse(colors.calc);
+
+    disp.value = colors.disp;
+    disp.style.backgroundColor = '#' + colors.disp;
+    disp.style.color = '#' + inverse(colors.disp);
+
+    dispfont.value = colors.dispfont;
+    dispfont.style.backgroundColor = '#' + colors.dispfont;
+    dispfont.style.color = '#' + inverse(colors.dispfont);
+
+    btn.value = colors.btn;
+    btn.style.backgroundColor = '#' + colors.btn;
+    btn.style.color = '#' + inverse(colors.btn);
+
+    btnfont.value = colors.btnfont;
+    btnfont.style.backgroundColor = '#' + colors.btnfont;
+    btnfont.style.color = '#' + inverse(colors.btnfont);
+}
+
+function inverse(c) {
+    if (c.length != 6 || ! c.match(/^[0-9a-fA-F]{6}$/))
+        return '';
+
+    var r = 255 - parseInt(c.slice(0, 2), 16);
+    var g = 255 - parseInt(c.slice(2, 4), 16);
+    var b = 255 - parseInt(c.slice(4, 6), 16);
+    return r.toString(16) + g.toString(16) + b.toString(16);
+}
+
+function set_cookie(colors) {
+    var bg;
+    var shadow;
+    var calc;
+    var disp;
+    var dispfont;
+    var btn;
+    var btnfont;
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + 365);
+    document.cookie =
+        "bg=" + colors.bg +
+        ";shadow=" + colors.shadow +
+        ";calc=" + colors.calc +
+        ";disp=" + colors.disp +
+        ";dispfont=" + colors.dispfont +
+        ";btn=" + colors.btn +
+        ";btnfont=" + colors.btnfont +
+        ";expires=" + exdate.toUTCString();
+}
+
+function get_cookie() {
+    var ret = {
+        bg: 'E0E0E0',
+        shadow: '000000',
+        calc: 'C0C0C0',
+        disp: 'FFFFFF',
+        dispfont: '000000',
+        btn: '8C8C8C',
+        btnfont: '000000',
+    };
+
+    if (document.cookie.length > 0) {
+        var cookies = document.cookie.split(';');
+        var this_cookie;
+
+        for (var i = 0; i < cookies.length; i++) {
+            this_cookie = cookies[i].split('=');
+            if (this_cookie.length == 2 &&
+                    this_cookie[1].length == 6 &&
+                    this_cookie[1].match(/^[0-9a-fA-F]{6}$/)) {
+
+                switch (this_cookie[0]) {
+                    case 'btn':
+                        ret.btn = this_cookie[1];
+                        break;
+                    case 'shadow':
+                        ret.shadow = this_cookie[1];
+                        break;
+                    case 'calc':
+                        ret.calc = this_cookie[1];
+                        break;
+                    case 'disp':
+                        ret.disp = this_cookie[1];
+                        break;
+                    case 'dispfont':
+                        ret.dispfont = this_cookie[1];
+                        break;
+                    case 'btn':
+                        ret.btn = this_cookie[1];
+                        break;
+                    case 'btnfont':
+                        ret.btnfont = this_cookie[1];
+                        break;
+                }
+            }
+        }
+    }
+    return ret;
 }
