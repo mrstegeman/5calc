@@ -241,7 +241,21 @@ function save_settings() {
 function apply_settings(colors) {
     document.body.style.backgroundColor = '#' + colors.bg;
 
-    //TODO shadow
+    if (document.body.style.MozBoxShadow == '') {
+        document.getElementById('navbar').style.MozBoxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('inner').style.MozBoxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('settings').style.MozBoxShadow = '0px 0px 10px #' + colors.shadow;
+    }
+    else if (document.body.style.WebkitBoxShadow == '') {
+        document.getElementById('navbar').style.WebkitBoxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('inner').style.WebkitBoxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('settings').style.WebkitBoxShadow = '0px 0px 10px #' + colors.shadow;
+    }
+    else if (document.body.style.boxShadow == '') {
+        document.getElementById('navbar').style.boxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('inner').style.boxShadow = '0px 0px 10px #' + colors.shadow;
+        document.getElementById('settings').style.boxShadow = '0px 0px 10px #' + colors.shadow;
+    }
 
     document.getElementById('inner').style.backgroundColor = '#' + colors.calc;
     document.getElementById('display').style.backgroundColor = '#' + colors.disp;
