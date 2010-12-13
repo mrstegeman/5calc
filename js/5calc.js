@@ -5,10 +5,6 @@ window.onload = function() {
     apply_settings(get_cookie());
 };
 
-window.onunload = function () {
-    set_cookie();
-};
-
 function key_press(evt, div_id) {
     var id = div_id ? div_id : '';
     var c = evt ? evt.charCode : -1;
@@ -219,6 +215,7 @@ function button_click(button_id, mode) {
 
 function show_settings() {
     document.getElementById('settings').style.display = 'block';
+    apply_settings_in_window(get_cookie());
 }
 
 function cancel_settings() {
@@ -227,9 +224,39 @@ function cancel_settings() {
 
 function save_settings() {
     document.getElementById('settings').style.display = 'none';
+    var colors = {
+        bg: document.getElementById('bgcolor').value,
+        shadow: document.getElementById('shadowcolor').value,
+        calc: document.getElementById('calccolor').value,
+        disp: document.getElementById('dispcolor').value,
+        dispfont: document.getElementById('dispfontcolor').value,
+        errorfont: document.getElementById('errorfontcolor').value,
+        btn: document.getElementById('btncolor').value,
+        btnfont: document.getElementById('btnfontcolor').value,
+    };
+    set_cookie(colors);
+    apply_settings(colors);
 }
 
-function load_settings() {
+function apply_settings(colors) {
+    document.body.style.backgroundColor = '#' + colors.bg;
+
+    //TODO shadow
+
+    document.getElementById('inner').style.backgroundColor = '#' + colors.calc;
+    document.getElementById('display').style.backgroundColor = '#' + colors.disp;
+    document.getElementById('display').style.color = '#' + colors.dispfont;
+    document.getElementById('error').style.color = '#' + colors.errorfont;
+
+    document.getElementById('navbar').style.backgroundColor = '#' + colors.btn;
+    document.getElementById('navbar').style.color = '#' + colors.btnfont;
+    document.getElementById('settings').style.backgroundColor = '#' + colors.btn;
+    document.getElementById('settings').style.color = '#' + colors.btnfont;
+    var btns = document.getElementsByClassName('button');
+    for (var x = 0; x < btns.length; x++) {
+        btns[x].style.backgroundColor = '#' + colors.btn;
+        btns[x].style.color = '#' + colors.btnfont;
+    }
 }
 
 function apply_settings_in_window(colors) {
@@ -239,6 +266,7 @@ function apply_settings_in_window(colors) {
         calc: 'C0C0C0',
         disp: 'FFFFFF',
         dispfont: '000000',
+        errorfont: 'FF0000',
         btn: '8C8C8C',
         btnfont: '000000',
     };
@@ -251,6 +279,7 @@ function apply_settings_in_window(colors) {
     var calc = document.getElementById('calccolor');
     var disp = document.getElementById('dispcolor');
     var dispfont = document.getElementById('dispfontcolor');
+    var errorfont = document.getElementById('errorfontcolor');
     var btn = document.getElementById('btncolor');
     var btnfont = document.getElementById('btnfontcolor');
 
@@ -274,6 +303,10 @@ function apply_settings_in_window(colors) {
     dispfont.style.backgroundColor = '#' + colors.dispfont;
     dispfont.style.color = '#' + inverse(colors.dispfont);
 
+    errorfont.value = colors.errorfont;
+    errorfont.style.backgroundColor = '#' + colors.errorfont;
+    errorfont.style.color = '#' + inverse(colors.errorfont);
+
     btn.value = colors.btn;
     btn.style.backgroundColor = '#' + colors.btn;
     btn.style.color = '#' + inverse(colors.btn);
@@ -294,24 +327,18 @@ function inverse(c) {
 }
 
 function set_cookie(colors) {
-    var bg;
-    var shadow;
-    var calc;
-    var disp;
-    var dispfont;
-    var btn;
-    var btnfont;
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + 365);
     document.cookie =
-        "bg=" + colors.bg +
-        ";shadow=" + colors.shadow +
-        ";calc=" + colors.calc +
-        ";disp=" + colors.disp +
-        ";dispfont=" + colors.dispfont +
-        ";btn=" + colors.btn +
-        ";btnfont=" + colors.btnfont +
-        ";expires=" + exdate.toUTCString();
+        "colors=bg:" + colors.bg +
+        "-shadow:" + colors.shadow +
+        "-calc:" + colors.calc +
+        "-disp:" + colors.disp +
+        "-dispfont:" + colors.dispfont +
+        "-errorfont:" + colors.errorfont +
+        "-btn:" + colors.btn +
+        "-btnfont:" + colors.btnfont +
+        "; expires=" + exdate.toUTCString();
 }
 
 function get_cookie() {
@@ -321,6 +348,7 @@ function get_cookie() {
         calc: 'C0C0C0',
         disp: 'FFFFFF',
         dispfont: '000000',
+        errorfont: 'FF0000',
         btn: '8C8C8C',
         btnfont: '000000',
     };
@@ -331,32 +359,43 @@ function get_cookie() {
 
         for (var i = 0; i < cookies.length; i++) {
             this_cookie = cookies[i].split('=');
-            if (this_cookie.length == 2 &&
-                    this_cookie[1].length == 6 &&
-                    this_cookie[1].match(/^[0-9a-fA-F]{6}$/)) {
+            if (this_cookie.length == 2 && this_cookie[0] == 'colors') {
+                var colors = this_cookie[1].split('-');
 
-                switch (this_cookie[0]) {
-                    case 'btn':
-                        ret.btn = this_cookie[1];
-                        break;
-                    case 'shadow':
-                        ret.shadow = this_cookie[1];
-                        break;
-                    case 'calc':
-                        ret.calc = this_cookie[1];
-                        break;
-                    case 'disp':
-                        ret.disp = this_cookie[1];
-                        break;
-                    case 'dispfont':
-                        ret.dispfont = this_cookie[1];
-                        break;
-                    case 'btn':
-                        ret.btn = this_cookie[1];
-                        break;
-                    case 'btnfont':
-                        ret.btnfont = this_cookie[1];
-                        break;
+                var this_color;
+                for (var j = 0; j < colors.length; j++) {
+                    this_color = colors[j].split(':');
+                    if (this_color.length == 2 &&
+                            this_color[1].length == 6 &&
+                            this_color[1].match(/^[0-9a-fA-F]{6}$/)) {
+
+                        switch (this_color[0]) {
+                            case 'bg':
+                                ret.bg = this_color[1];
+                                break;
+                            case 'shadow':
+                                ret.shadow = this_color[1];
+                                break;
+                            case 'calc':
+                                ret.calc = this_color[1];
+                                break;
+                            case 'disp':
+                                ret.disp = this_color[1];
+                                break;
+                            case 'dispfont':
+                                ret.dispfont = this_color[1];
+                                break;
+                            case 'errorfont':
+                                ret.errorfont = this_color[1];
+                                break;
+                            case 'btn':
+                                ret.btn = this_color[1];
+                                break;
+                            case 'btnfont':
+                                ret.btnfont = this_color[1];
+                                break;
+                        }
+                    }
                 }
             }
         }
