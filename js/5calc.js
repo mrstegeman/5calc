@@ -161,6 +161,7 @@ function button_click(button_id, mode) {
 
 function cancel_settings() {
     document.getElementById('settings').style.display = 'none';
+    apply_settings(get_storage());
 }
 
 function save_settings() {
@@ -214,9 +215,9 @@ function apply_settings(colors) {
     }
 }
 
-function show_settings() {
-    document.getElementById('settings').style.display = 'block';
-    var colors = get_storage();
+function show_settings(colors) {
+    if (!colors)
+        colors = get_storage();
 
     var bg = document.getElementById('bgcolor');
     var shadow = document.getElementById('shadowcolor');
@@ -258,6 +259,9 @@ function show_settings() {
     btnfont.value = colors.btnfont;
     btnfont.style.backgroundColor = '#' + colors.btnfont;
     btnfont.style.color = '#' + inverse(colors.btnfont);
+
+    document.getElementById('settings').style.display = 'block';
+    color_changed();
 }
 
 function inverse(c) {
@@ -283,15 +287,29 @@ function set_storage(colors) {
 }
 
 function get_storage() {
+    var def = get_defaults();
     return {
-        bg: localStorage.bg ? localStorage.bg : 'E0E0E0',
-        shadow: localStorage.shadow ? localStorage.shadow : '000000',
-        calc: localStorage.calc ? localStorage.calc : 'C0C0C0',
-        disp: localStorage.disp ? localStorage.disp : 'FFFFFF',
-        dispfont: localStorage.dispfont ? localStorage.dispfont : '000000',
-        errorfont: localStorage.errorfont ? localStorage.errorfont : 'FF0000',
-        btn: localStorage.btn ? localStorage.btn : '8C8C8C',
-        btnfont: localStorage.btnfont ? localStorage.btnfont : '000000',
+        bg: localStorage.bg ? localStorage.bg : def.bg,
+        shadow: localStorage.shadow ? localStorage.shadow : def.shadow,
+        calc: localStorage.calc ? localStorage.calc : def.calc,
+        disp: localStorage.disp ? localStorage.disp : def.disp,
+        dispfont: localStorage.dispfont ? localStorage.dispfont : def.dispfont,
+        errorfont: localStorage.errorfont ? localStorage.errorfont : def.errorfont,
+        btn: localStorage.btn ? localStorage.btn : def.btn,
+        btnfont: localStorage.btnfont ? localStorage.btnfont : def.btnfont,
+    };
+}
+
+function get_defaults() {
+    return {
+        bg: 'E0E0E0',
+        shadow: '000000',
+        calc: 'C0C0C0',
+        disp: 'FFFFFF',
+        dispfont: '000000',
+        errorfont: 'FF0000',
+        btn: '8C8C8C',
+        btnfont: '000000',
     };
 }
 
@@ -303,4 +321,18 @@ function highlight_button(btn) {
 function unhighlight_button(btn) {
     var colors = get_storage();
     btn.style.backgroundColor = '#' + colors.btn;
+}
+
+function color_changed() {
+    var colors = {
+        bg: document.getElementById('bgcolor').value,
+        shadow: document.getElementById('shadowcolor').value,
+        calc: document.getElementById('calccolor').value,
+        disp: document.getElementById('dispcolor').value,
+        dispfont: document.getElementById('dispfontcolor').value,
+        errorfont: document.getElementById('errorfontcolor').value,
+        btn: document.getElementById('btncolor').value,
+        btnfont: document.getElementById('btnfontcolor').value,
+    }
+    apply_settings(colors);
 }

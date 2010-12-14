@@ -22,27 +22,90 @@
                     <div id="error"></div>
                     <div id="display">0</div>
                     <div id="buttons">
-                        <div id="lparen" class="button button-half" onclick="key_press(null, 'lparen');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">(</div>
-                        <div id="rparen" class="button button-half" onclick="key_press(null, 'rparen');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">)</div>
-                        <div id="bksp" class="button" onclick="key_down(null, 'bksp');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">BKSP</div>
-                        <div id="clr" class="button" onclick="key_down(null, 'clr');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">CLR</div>
-                        <div id="power" class="button" onclick="key_press(null, 'power');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">x<sup>y</sup></div>
-                        <div id="seven" class="button" onclick="key_press(null, 'seven');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">7</div>
-                        <div id="eight" class="button" onclick="key_press(null, 'eight');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">8</div>
-                        <div id="nine" class="button" onclick="key_press(null, 'nine');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">9</div>
-                        <div id="divide" class="button" onclick="key_press(null, 'divide');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">÷</div>
-                        <div id="four" class="button" onclick="key_press(null, 'four');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">4</div>
-                        <div id="five" class="button" onclick="key_press(null, 'five');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">5</div>
-                        <div id="six" class="button" onclick="key_press(null, 'six');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">6</div>
-                        <div id="multiply" class="button" onclick="key_press(null, 'multiply');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">×</div>
-                        <div id="one" class="button" onclick="key_press(null, 'one');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">1</div>
-                        <div id="two" class="button" onclick="key_press(null, 'two');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">2</div>
-                        <div id="three" class="button" onclick="key_press(null, 'three');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">3</div>
-                        <div id="subtract" class="button" onclick="key_press(null, 'subtract');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">–</div>
-                        <div id="zero" class="button" onclick="key_press(null, 'zero');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">0</div>
-                        <div id="dot" class="button" onclick="key_press(null, 'dot');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">.</div>
-                        <div id="equals" class="button" onclick="key_press(null, 'equals');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">=</div>
-                        <div id="add" class="button" onclick="key_press(null, 'add');" onmouseover="highlight_button(this);" onmouseout="unhighlight_button(this);">+</div>
+                        <div id="lparen" class="button button-half"
+                            onclick="key_press(null, 'lparen');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">(</div>
+                        <div id="rparen" class="button button-half"
+                            onclick="key_press(null, 'rparen');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">)</div>
+                        <div id="bksp" class="button"
+                            onclick="key_down(null, 'bksp');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">BKSP</div>
+                        <div id="clr" class="button"
+                            onclick="key_down(null, 'clr');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">CLR</div>
+                        <div id="power" class="button"
+                            onclick="key_press(null, 'power');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">x<sup>y</sup></div>
+                        <div id="seven" class="button"
+                            onclick="key_press(null, 'seven');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">7</div>
+                        <div id="eight" class="button"
+                            onclick="key_press(null, 'eight');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">8</div>
+                        <div id="nine" class="button"
+                            onclick="key_press(null, 'nine');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">9</div>
+                        <div id="divide" class="button"
+                            onclick="key_press(null, 'divide');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">÷</div>
+                        <div id="four" class="button"
+                            onclick="key_press(null, 'four');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">4</div>
+                        <div id="five" class="button"
+                            onclick="key_press(null, 'five');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">5</div>
+                        <div id="six" class="button"
+                            onclick="key_press(null, 'six');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">6</div>
+                        <div id="multiply" class="button"
+                            onclick="key_press(null, 'multiply');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">×</div>
+                        <div id="one" class="button"
+                            onclick="key_press(null, 'one');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">1</div>
+                        <div id="two" class="button"
+                            onclick="key_press(null, 'two');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">2</div>
+                        <div id="three" class="button"
+                            onclick="key_press(null, 'three');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">3</div>
+                        <div id="subtract" class="button"
+                            onclick="key_press(null, 'subtract');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">–</div>
+                        <div id="zero" class="button"
+                            onclick="key_press(null, 'zero');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">0</div>
+                        <div id="dot" class="button"
+                            onclick="key_press(null, 'dot');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">.</div>
+                        <div id="equals" class="button"
+                            onclick="key_press(null, 'equals');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">=</div>
+                        <div id="add" class="button"
+                            onclick="key_press(null, 'add');"
+                            onmouseover="highlight_button(this);"
+                            onmouseout="unhighlight_button(this);">+</div>
                     </div>
                 </div>
             </div>
@@ -50,41 +113,68 @@
                 <table>
                     <tr>
                         <td>Background:</td>
-                        <td><input id="bgcolor" class="color" /></td>
+                        <td>
+                            <input id="bgcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Shadow:</td>
-                        <td><input id="shadowcolor" class="color" /></td>
+                        <td>
+                            <input id="shadowcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Calculator:</td>
-                        <td><input id="calccolor" class="color" /></td>
+                        <td>
+                            <input id="calccolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Display:</td>
-                        <td><input id="dispcolor" class="color" /></td>
+                        <td>
+                            <input id="dispcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Display font:</td>
-                        <td><input id="dispfontcolor" class="color" /></td>
+                        <td>
+                            <input id="dispfontcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Display error font:</td>
-                        <td><input id="errorfontcolor" class="color" /></td>
+                        <td>
+                            <input id="errorfontcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Button:</td>
-                        <td><input id="btncolor" class="color" /></td>
+                        <td>
+                            <input id="btncolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Button font:</td>
-                        <td><input id="btnfontcolor" class="color" /></td>
+                        <td>
+                            <input id="btnfontcolor" class="color"
+                                onchange="color_changed();"/>
+                        </td>
                     </tr>
                 </table>
                 <br />
-                <input class="settings_btn" id="settings_reset" type="button" value="Defaults" onclick="apply_settings_in_window();" />
-                <input class="settings_btn" id="settings_cancel" type="button" value="Cancel" onclick="cancel_settings();" />
-                <input class="settings_btn" id="settings_save" type="button" value="Save" onclick="save_settings();" />
+                <input class="settings_btn" id="settings_reset" type="button" value="Defaults"
+                    onclick="show_settings(get_defaults());" />
+                <input class="settings_btn" id="settings_cancel" type="button" value="Cancel"
+                    onclick="cancel_settings();" />
+                <input class="settings_btn" id="settings_save" type="button" value="Save"
+                    onclick="save_settings();" />
             </div>
         </div>
     </body>
