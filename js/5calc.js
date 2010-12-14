@@ -1,178 +1,107 @@
 window.onload = function() {
+    apply_settings(get_storage());
     document.onkeypress = key_press;
     document.onkeydown = key_down;
     document.onkeyup = key_up;
-    apply_settings(get_cookie());
 };
 
 function key_press(evt, div_id) {
     var id = div_id ? div_id : '';
     var c = evt ? evt.charCode : -1;
-    var k = evt ? evt.keyCode : -1;
-    var handled = true;
+    var data;
 
-    if (c == 48 || id == 'zero') { // 0
-        button_click('zero', 3);
-        append_data('0');
-    }
-    else if (c == 49 || id == 'one') { // 1
-        button_click('one', 3);
-        append_data('1');
-    }
-    else if (c == 50 || id == 'two') { // 2
-        button_click('two', 3);
-        append_data('2');
-    }
-    else if (c == 51 || id == 'three') { // 3
-        button_click('three', 3);
-        append_data('3');
-    }
-    else if (c == 52 || id == 'four') { // 4
-        button_click('four', 3);
-        append_data('4');
-    }
-    else if (c == 53 || id == 'five') { // 5
-        button_click('five', 3);
-        append_data('5');
-    }
-    else if (c == 54 || id == 'six') { // 6
-        button_click('six', 3);
-        append_data('6');
-    }
-    else if (c == 55 || id == 'seven') { // 7
-        button_click('seven', 3);
-        append_data('7');
-    }
-    else if (c == 56 || id == 'eight') { // 8
-        button_click('eight', 3);
-        append_data('8');
-    }
-    else if (c == 57 || id == 'nine') { // 9
-        button_click('nine', 3);
-        append_data('9');
-    }
-    else if (c == 47 || id == 'divide') { // /
-        button_click('divide', 3);
-        append_data('÷');
-    }
-    else if (c == 42 || id == 'multiply') { // *
-        button_click('multiply', 3);
-        append_data('×');
-    }
-    else if (c == 45 || id == 'subtract') { // -
-        button_click('subtract', 3);
-        append_data('-');
-    }
-    else if (c == 46 || id == 'dot') { // .
-        button_click('dot', 3);
-        append_data('.');
-    }
-    else if (c == 43 || id == 'add') { // +
-        button_click('add', 3);
-        append_data('+');
-    }
-    else if (c == 94 || id == 'power') { // ^
-        button_click('power', 3);
-        append_data('^');
-    }
-    else if (c == 40 || id == 'lparen') { // (
-        button_click('lparen', 3);
-        append_data('(');
-    }
-    else if (c == 41 || id == 'rparen') { // ()
-        button_click('rparen', 3);
-        append_data(')');
-    }
-    else if (c == 61 || id == 'equals') { // equals
+    if (c == 61 || id == 'equals') {
         button_click('equals', 3);
         calculate();
+        scroll_left();
+        return true;
     }
-    else {
-        handled = false;
-    }
+    else if (c == 48 || id == 'zero')
+        data = ['zero', '0'];
+    else if (c == 49 || id == 'one')
+        data = ['one', '1'];
+    else if (c == 50 || id == 'two')
+        data = ['two', '2'];
+    else if (c == 51 || id == 'three')
+        data = ['three', '3'];
+    else if (c == 52 || id == 'four')
+        data = ['four', '4'];
+    else if (c == 53 || id == 'five')
+        data = ['five', '5'];
+    else if (c == 54 || id == 'six')
+        data = ['six', '6'];
+    else if (c == 55 || id == 'seven')
+        data = ['seven', '7'];
+    else if (c == 56 || id == 'eight')
+        data = ['eight', '8'];
+    else if (c == 57 || id == 'nine')
+        data = ['nine', '9'];
+    else if (c == 47 || id == 'divide')
+        data = ['divide', '÷'];
+    else if (c == 42 || id == 'multiply')
+        data = ['multiply', '×'];
+    else if (c == 45 || id == 'subtract')
+        data = ['subtract', '-'];
+    else if (c == 46 || id == 'dot')
+        data = ['dot', '.'];
+    else if (c == 43 || id == 'add')
+        data = ['add', '+'];
+    else if (c == 94 || id == 'power')
+        data = ['power', '^'];
+    else if (c == 40 || id == 'lparen')
+        data = ['lparen', '('];
+    else if (c == 41 || id == 'rparen')
+        data = ['rparen', ')'];
+    else
+        return true;
 
-    if (handled) {
-        fix_scroll();
-        return false;
-    }
+    button_click(data[0], 3);
+    append_data(data[1]);
+    scroll_right();
+    return false;
 }
 
 function key_down(evt, div_id) {
     var id = div_id ? div_id : '';
     var k = evt ? evt.keyCode : -1;
-    var handled = true;
 
     if (k == 27 || id == 'clr') { // escape
         button_click('clr', 1);
+        if (id)
+            setTimeout("button_click('clr', 2)", 150);
         reset();
-        if (id != '')
-            key_up(null, id);
     }
     else if (k == 8 || id == 'bksp') { // backspace
         button_click('bksp', 1);
+        if (id)
+            setTimeout("button_click('bksp', 2)", 150);
         cut_data();
-        if (id != '')
-            key_up(null, id);
     }
     else if (k == 13) { // enter
         button_click('equals', 1);
-    }
-    else {
-        handled = false;
-    }
-
-    if (handled) {
-        fix_scroll();
-        return false;
-    }
-}
-
-function key_up(evt, div_id) {
-    var id = div_id ? div_id : '';
-    var k = evt ? evt.keyCode : -1;
-    var handled = true;
-
-    if (k == 27 || id == 'clr') { // escape
-        if (id == '')
-            button_click('clr', 2);
-        else
-            setTimeout("button_click('clr', 2)", 150);
-    }
-    else if (k == 8 || id == 'bksp') { // backspace
-        if (id == '')
-            button_click('bksp', 2);
-        else
-            setTimeout("button_click('bksp', 2)", 150);
-    }
-    else if (k == 13) { // enter
         calculate();
-        button_click('equals', 2);
-    }
-    else {
-        handled = false;
-    }
-
-    if (handled) {
-        fix_scroll();
-        return false;
+        scroll_left();
     }
 }
 
-function sleep(millis) {
-    var date = new Date();
-    var curDate = date;
-    while ((curDate - date) < millis) {
-        curDate = new Date();
-    }
+function key_up(evt) {
+    var k = evt.keyCode;
+
+    if (k == 27) // escape
+        button_click('clr', 2);
+    else if (k == 8) // backspace
+        button_click('bksp', 2);
+    else if (k == 13) // enter
+        button_click('equals', 2);
 }
 
 function calculate() {
     var disp = document.getElementById('display');
     var error = document.getElementById('error');
     var result = __parse(disp.innerHTML);
-    if (result.err > 0) {
+
+    if (result.err > 0)
         error.innerHTML = 'Malformed expression';
-    }
     else {
         error.innerHTML = '';
         disp.innerHTML = result.res;
@@ -184,13 +113,18 @@ function reset() {
     document.getElementById('error').innerHTML = '';
 }
 
-function fix_scroll() {
+function scroll_right() {
     var disp = document.getElementById('display');
     disp.scrollLeft = disp.scrollWidth;
 }
 
+function scroll_left() {
+    document.getElementById('display').scrollLeft = 0;
+}
+
 function append_data(str) {
     var disp = document.getElementById('display');
+
     if (disp.innerHTML == '0')
         disp.innerHTML = str;
     else
@@ -199,6 +133,7 @@ function append_data(str) {
 
 function cut_data() {
     var disp = document.getElementById('display');
+
     disp.innerHTML = disp.innerHTML.substring(0, disp.innerHTML.length - 1);
     if (disp.innerHTML == '')
         disp.innerHTML = '0';
@@ -206,7 +141,7 @@ function cut_data() {
 
 function button_click(button_id, mode) {
     var btn = document.getElementById(button_id);
-    var colors = get_cookie();
+    var colors = get_storage();
 
     switch (mode) {
         case 1: // button down
@@ -222,11 +157,6 @@ function button_click(button_id, mode) {
             setTimeout("button_click('" + button_id + "', 2)", 150);
             break;
     }
-}
-
-function show_settings() {
-    document.getElementById('settings').style.display = 'block';
-    apply_settings_in_window(get_cookie());
 }
 
 function cancel_settings() {
@@ -245,7 +175,7 @@ function save_settings() {
         btn: document.getElementById('btncolor').value,
         btnfont: document.getElementById('btnfontcolor').value,
     };
-    set_cookie(colors);
+    set_storage(colors);
     apply_settings(colors);
 }
 
@@ -284,20 +214,9 @@ function apply_settings(colors) {
     }
 }
 
-function apply_settings_in_window(colors) {
-    var defaults = {
-        bg: 'E0E0E0',
-        shadow: '000000',
-        calc: 'C0C0C0',
-        disp: 'FFFFFF',
-        dispfont: '000000',
-        errorfont: 'FF0000',
-        btn: '8C8C8C',
-        btnfont: '000000',
-    };
-
-    if (!colors)
-        colors = defaults;
+function show_settings() {
+    document.getElementById('settings').style.display = 'block';
+    var colors = get_storage();
 
     var bg = document.getElementById('bgcolor');
     var shadow = document.getElementById('shadowcolor');
@@ -348,92 +267,40 @@ function inverse(c) {
     var r = 255 - parseInt(c.slice(0, 2), 16);
     var g = 255 - parseInt(c.slice(2, 4), 16);
     var b = 255 - parseInt(c.slice(4, 6), 16);
+
     return r.toString(16) + g.toString(16) + b.toString(16);
 }
 
-function set_cookie(colors) {
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + 3650);
-    document.cookie =
-        "colors=bg:" + colors.bg +
-        "-shadow:" + colors.shadow +
-        "-calc:" + colors.calc +
-        "-disp:" + colors.disp +
-        "-dispfont:" + colors.dispfont +
-        "-errorfont:" + colors.errorfont +
-        "-btn:" + colors.btn +
-        "-btnfont:" + colors.btnfont +
-        "; expires=" + exdate.toUTCString();
+function set_storage(colors) {
+    localStorage.bg = colors.bg;
+    localStorage.shadow = colors.shadow;
+    localStorage.calc = colors.calc;
+    localStorage.disp = colors.disp;
+    localStorage.dispfont = colors.dispfont;
+    localStorage.errorfont = colors.errorfont;
+    localStorage.btn = colors.btn;
+    localStorage.btnfont = colors.btnfont;
 }
 
-function get_cookie() {
-    var ret = {
-        bg: 'E0E0E0',
-        shadow: '000000',
-        calc: 'C0C0C0',
-        disp: 'FFFFFF',
-        dispfont: '000000',
-        errorfont: 'FF0000',
-        btn: '8C8C8C',
-        btnfont: '000000',
+function get_storage() {
+    return {
+        bg: localStorage.bg ? localStorage.bg : 'E0E0E0',
+        shadow: localStorage.shadow ? localStorage.shadow : '000000',
+        calc: localStorage.calc ? localStorage.calc : 'C0C0C0',
+        disp: localStorage.disp ? localStorage.disp : 'FFFFFF',
+        dispfont: localStorage.dispfont ? localStorage.dispfont : '000000',
+        errorfont: localStorage.errorfont ? localStorage.errorfont : 'FF0000',
+        btn: localStorage.btn ? localStorage.btn : '8C8C8C',
+        btnfont: localStorage.btnfont ? localStorage.btnfont : '000000',
     };
-
-    if (document.cookie.length > 0) {
-        var cookies = document.cookie.split(';');
-        var this_cookie;
-
-        for (var i = 0; i < cookies.length; i++) {
-            this_cookie = cookies[i].split('=');
-            if (this_cookie.length == 2 && this_cookie[0] == 'colors') {
-                var colors = this_cookie[1].split('-');
-
-                var this_color;
-                for (var j = 0; j < colors.length; j++) {
-                    this_color = colors[j].split(':');
-                    if (this_color.length == 2 &&
-                            this_color[1].length == 6 &&
-                            this_color[1].match(/^[0-9a-fA-F]{6}$/)) {
-
-                        switch (this_color[0]) {
-                            case 'bg':
-                                ret.bg = this_color[1];
-                                break;
-                            case 'shadow':
-                                ret.shadow = this_color[1];
-                                break;
-                            case 'calc':
-                                ret.calc = this_color[1];
-                                break;
-                            case 'disp':
-                                ret.disp = this_color[1];
-                                break;
-                            case 'dispfont':
-                                ret.dispfont = this_color[1];
-                                break;
-                            case 'errorfont':
-                                ret.errorfont = this_color[1];
-                                break;
-                            case 'btn':
-                                ret.btn = this_color[1];
-                                break;
-                            case 'btnfont':
-                                ret.btnfont = this_color[1];
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return ret;
 }
 
 function highlight_button(btn) {
-    var colors = get_cookie();
+    var colors = get_storage();
     btn.style.backgroundColor = '#' + colors.bg;
 }
 
 function unhighlight_button(btn) {
-    var colors = get_cookie();
+    var colors = get_storage();
     btn.style.backgroundColor = '#' + colors.btn;
 }
