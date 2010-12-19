@@ -227,6 +227,7 @@ function show_settings(colors) {
     var errorfont = document.getElementById('errorfontcolor');
     var btn = document.getElementById('btncolor');
     var btnfont = document.getElementById('btnfontcolor');
+    var settings = document.getElementById('settings');
 
     bg.value = colors.bg;
     bg.style.backgroundColor = '#' + colors.bg;
@@ -260,7 +261,9 @@ function show_settings(colors) {
     btnfont.style.backgroundColor = '#' + colors.btnfont;
     btnfont.style.color = '#' + inverse(colors.btnfont);
 
-    document.getElementById('settings').style.display = 'block';
+    settings.style.display = 'block';
+    settings.style.top = Math.round(
+            (window.innerHeight - settings.offsetHeight) / 2) + 'px';
     color_changed();
 }
 
