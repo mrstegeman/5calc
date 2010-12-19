@@ -142,6 +142,7 @@ function show_settings(colors) {
     var btn = document.getElementById('btncolor');
     var btnfont = document.getElementById('btnfontcolor');
     var settings = document.getElementById('settings');
+    var mode = document.getElementById('mode');
 
     bg.value = colors.bg;
     bg.style.backgroundColor = '#' + colors.bg;
@@ -175,6 +176,8 @@ function show_settings(colors) {
     btnfont.style.backgroundColor = '#' + colors.btnfont;
     btnfont.style.color = '#' + inverse(colors.btnfont);
 
+    mode.value = colors.mode;
+
     settings.style.display = 'block';
     settings.style.top = Math.round(
             (window.innerHeight - settings.offsetHeight) / 2) + 'px';
@@ -201,6 +204,7 @@ function set_storage(colors) {
     localStorage.errorfont = colors.errorfont;
     localStorage.btn = colors.btn;
     localStorage.btnfont = colors.btnfont;
+    localStorage.mode = colors.mode;
 }
 
 function get_storage() {
@@ -214,6 +218,7 @@ function get_storage() {
         errorfont: localStorage.errorfont ? localStorage.errorfont : def.errorfont,
         btn: localStorage.btn ? localStorage.btn : def.btn,
         btnfont: localStorage.btnfont ? localStorage.btnfont : def.btnfont,
+        mode: localStorage.mode ? localStorage.mode : def.mode,
     };
 }
 
@@ -227,6 +232,7 @@ function get_defaults() {
         errorfont: 'FF0000',
         btn: '8C8C8C',
         btnfont: '000000',
+        mode: 'rad',
     };
 }
 
