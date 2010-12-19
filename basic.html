@@ -3,9 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
         <title>5calc</title>
-        <link rel="stylesheet" type="text/css" href="./media/5calc.css" />
-        <link rel="shortcut icon" type="image/png" href="./media/5calc.png">
-        <script type="text/javascript" src="./js/5calc.js"></script>
+        <link rel="stylesheet" type="text/css" href="./media/common.css" />
+        <link rel="stylesheet" type="text/css" href="./media/basic.css" />
+        <link rel="shortcut icon" type="image/png" href="./icon_16.png">
+        <script type="text/javascript" src="./js/common.js"></script>
+        <script type="text/javascript" src="./js/basic.js"></script>
         <script type="text/javascript" src="./js/parser.js"></script>
         <script type="text/javascript" src="./jscolor/jscolor.js"></script>
     </head>
@@ -22,11 +24,11 @@
                     <div id="error"></div>
                     <div id="display">0</div>
                     <div id="buttons">
-                        <div id="lparen" class="button button-half"
+                        <div id="lparen" class="button"
                             onclick="key_press(null, 'lparen');"
                             onmouseover="highlight_button(this);"
                             onmouseout="unhighlight_button(this);">(</div>
-                        <div id="rparen" class="button button-half"
+                        <div id="rparen" class="button"
                             onclick="key_press(null, 'rparen');"
                             onmouseover="highlight_button(this);"
                             onmouseout="unhighlight_button(this);">)</div>
@@ -38,10 +40,6 @@
                             onclick="key_down(null, 'clr');"
                             onmouseover="highlight_button(this);"
                             onmouseout="unhighlight_button(this);">CLR</div>
-                        <div id="power" class="button"
-                            onclick="key_press(null, 'power');"
-                            onmouseover="highlight_button(this);"
-                            onmouseout="unhighlight_button(this);">x<sup>y</sup></div>
                         <div id="seven" class="button"
                             onclick="key_press(null, 'seven');"
                             onmouseover="highlight_button(this);"

@@ -1,19 +1,14 @@
 html, body {
-    background-color: #E0E0E0;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    color: #000000;
 }
 a, a:link, a:visited, a:active {
-    color: #000000;
     text-decoration: none;
     outline: none;
 }
 a:hover {
-    color: #FFFFFF;
-    background-color: #333333;
     outline: none;
 }
 #outer {
@@ -31,7 +26,6 @@ a:hover {
     font-size: 18px;
     z-index: 2;
     line-height: 0px;
-    background-color: #8C8C8C;
     text-align: center;
     -moz-box-shadow: 0px 0px 10px #000000;
     -webkit-box-shadow: 0px 0px 10px #000000;
@@ -56,10 +50,7 @@ a:hover {
     -webkit-box-shadow: 0px 0px 10px #000000;
     -moz-box-shadow: 0px 0px 10px #000000;
     z-index: 1;
-    background-color: #C0C0C0;
     opacity: 0.7;
-    width: 296px;
-    height: 372px;
     border-radius: 10px;
     -moz-border-radius: 10px;
     padding: 10px;
@@ -70,9 +61,7 @@ a:hover {
     position: relative;
     left: 6px;
     top: 5px;
-    width: 262px;
     height: 62px;
-    background-color: #FFFFFF;
     border-radius: 10px;
     -moz-border-radius: 10px;
     border-width: 1px;
@@ -89,11 +78,9 @@ a:hover {
     left: 6px;
     top: 24px;
     padding-left: 10px;
-    width: 268px;
     height: 12px;
     margin-top: -12px;
     font-size: 12px;
-    color: #FF0000;
     font-weight: normal;
     z-index: 2;
     text-align: center;
@@ -116,7 +103,6 @@ a:hover {
     margin: 6px;
     font-size: 20px;
     line-height: 40px;
-    background-color: #8C8C8C;
 }
 .button-half {
     width: 23px !important;
@@ -129,7 +115,6 @@ a:hover {
     -moz-border-radius: 10px;
     left: 20px;
     z-index: 3;
-    background-color: #8C8C8C;
     opacity: 0.7;
     font-size: 14px;
     font-weight: bold;
