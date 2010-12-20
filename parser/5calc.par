@@ -1,6 +1,5 @@
 /~ Expression calculator written in JS/CC (browser-based JavaScript Version) ~/
 
-
 /~ --- Token definitions --- ~/
 
 /~ Characters to be ignored ~/
@@ -9,18 +8,31 @@
 /~ Non-associative tokens ~/
     '\('                LPAREN
     '\)'                RPAREN
+    '\|'                PIPE
+    '!'                 FACT
+    'asin'              ASIN
+    'acos'              ACOS
+    'atan'              ATAN
+    'sin'               SIN
+    'cos'               COS
+    'tan'               TAN
+    'ln'                LN
+    'log'               LOG
+    'e'                 E       [* %match = Math.E; *]
+    'pi'                PI      [* %match = Math.PI; *]
     '[0-9]+'            INT     [* %match = parseInt(%match); *]
     '[0-9]*\.[0-9]+'    FLOAT   [* %match = parseFloat(%match); *]
     ;
 
 /~ Left-associative tokens, lowest precedence ~/
-<  '\+'                 ADD
-   '\-'                 SUB
+<   '\+'                ADD
+    '\-'                SUB
     ;
     
 /~ Left-associative tokens, higher` precedence ~/
-<  '×'                  MULT
-   '÷'                  DIV
+<   '\*'                MULT
+    '/'                 DIV
+    '%'                 MOD
     ;
 
 /~ Left-associative tokens, highest precedence ~/
@@ -31,16 +43,29 @@
 
 /~ --- Grammar specification --- ~/
 
-p:  e                   [* return %1; *]
+p:  e                       [* return %1; *]
     ;
 
-e:  e ADD e             [* %% = %1 + %3; *]
-    | e SUB e           [* %% = %1 - %3; *]
-    | e MULT e          [* %% = %1 * %3; *]
-    | e DIV e           [* %% = %1 / %3; *]
-    | e POW e           [* %% = Math.pow(%1, %3); *]
-    | SUB e &MULT       [* %% = %2 * -1; *]
-    | LPAREN e RPAREN   [* %% = %2; *]
+e:  e ADD e                 [* %% = %1 + %3; *]
+    | e SUB e               [* %% = %1 - %3; *]
+    | e MULT e              [* %% = %1 * %3; *]
+    | e DIV e               [* %% = %1 / %3; *]
+    | e MOD e               [* %% = %1 % %3; *]
+    | e POW e               [* %% = Math.pow(%1, %3); *]
+    | SUB e &MULT           [* %% = %2 * -1; *]
+    | LPAREN e RPAREN       [* %% = %2; *]
+    | PIPE e PIPE           [* %% = Math.abs(%2); *]
+    | ASIN LPAREN e RPAREN  [* %% = Math.asin(%3); *]
+    | ACOS LPAREN e RPAREN  [* %% = Math.acos(%3); *]
+    | ATAN LPAREN e RPAREN  [* %% = Math.atan(%3); *]
+    | SIN LPAREN e RPAREN   [* %% = Math.sin(%3); *]
+    | COS LPAREN e RPAREN   [* %% = Math.cos(%3); *]
+    | TAN LPAREN e RPAREN   [* %% = Math.tan(%3); *]
+    | LN LPAREN e RPAREN    [* %% = Math.log(%3); *]
+    | LOG LPAREN e RPAREN   [* %% = Math.log(%3) / Math.log(10); *]
+    | e FACT                [* %% = factorial(%1); *]
     | INT
     | FLOAT
+    | E
+    | PI
     ;

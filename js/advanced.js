@@ -30,19 +30,49 @@ function key_press(evt, div_id) {
     else if (c == 57 || id == 'nine')
         data = ['nine', '9'];
     else if (c == 47 || id == 'divide')
-        data = ['divide', '÷'];
+        data = ['divide', '/'];
     else if (c == 42 || id == 'multiply')
-        data = ['multiply', '×'];
+        data = ['multiply', '*'];
     else if (c == 45 || id == 'subtract')
         data = ['subtract', '-'];
     else if (c == 46 || id == 'dot')
         data = ['dot', '.'];
     else if (c == 43 || id == 'add')
         data = ['add', '+'];
+    else if (c == 94 || id == 'pow')
+        data = ['pow', '^'];
     else if (c == 40 || id == 'lparen')
         data = ['lparen', '('];
     else if (c == 41 || id == 'rparen')
         data = ['rparen', ')'];
+    else if (c == 33 || id == 'fact')
+        data = ['fact', '!'];
+    else if (c == 115 || id == 'sin')
+        data = ['sin', 'sin('];
+    else if (c == 99 || id == 'cos')
+        data = ['cos', 'cos('];
+    else if (c == 116 || id == 'tan')
+        data = ['tan', 'tan('];
+    else if (c == 83 || id == 'asin')
+        data = ['asin', 'asin('];
+    else if (c == 67 || id == 'acos')
+        data = ['acos', 'acos('];
+    else if (c == 84 || id == 'atan')
+        data = ['atan', 'atan('];
+    else if (c == 101 || id == 'e')
+        data = ['e', 'e'];
+    else if (c == 112 || id == 'pi')
+        data = ['pi', 'pi'];
+    else if (c == 114 || id == 'sqrt')
+        data = ['sqrt', '^(1/2)'];
+    else if (c == 37 || id == 'mod')
+        data = ['mod', '%'];
+    else if (c == 124 || id == 'abs')
+        data = ['abs', '|'];
+    else if (c == 108 || id == 'log')
+        data = ['log', 'log('];
+    else if (c == 110 || id == 'ln')
+        data = ['ln', 'ln('];
     else
         return true;
 
