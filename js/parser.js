@@ -369,7 +369,7 @@ function __lex(info) {
     return match;
 }
 
-function __parse(src, err_off, err_la) {
+function __parse(src, degrees, err_off, err_la) {
     var result;
     var sstack = new Array();
     var vstack = new Array();
@@ -739,13 +739,22 @@ function __parse(src, err_off, err_la) {
                     rval = Math.atan(vstack[vstack.length - 2]);
                     break;
                 case 14:
-                    rval = Math.sin(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = Math.sin(vstack[vstack.length - 2] * Math.PI / 180);
+                    else
+                        rval = Math.sin(vstack[vstack.length - 2]);
                     break;
                 case 15:
-                    rval = Math.cos(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = Math.cos(vstack[vstack.length - 2] * Math.PI / 180);
+                    else
+                        rval = Math.cos(vstack[vstack.length - 2]);
                     break;
                 case 16:
-                    rval = Math.tan(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = Math.tan(vstack[vstack.length - 2] * Math.PI / 180);
+                    else
+                        rval = Math.tan(vstack[vstack.length - 2]);
                     break;
                 case 17:
                     rval = Math.log(vstack[vstack.length - 2]);

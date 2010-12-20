@@ -8,7 +8,9 @@ window.onload = function() {
 function calculate() {
     var disp = document.getElementById('display');
     var error = document.getElementById('error');
-    var result = __parse(disp.innerHTML);
+    var colors = get_storage();
+    var degrees = colors.mode == 'deg' ? true : false;
+    var result = __parse(disp.innerHTML, degrees);
 
     if (result.err > 0)
         error.innerHTML = 'Malformed expression';
@@ -92,6 +94,7 @@ function save_settings() {
         errorfont: document.getElementById('errorfontcolor').value,
         btn: document.getElementById('btncolor').value,
         btnfont: document.getElementById('btnfontcolor').value,
+        mode: document.getElementById('mode').value,
     };
     set_storage(colors);
     apply_settings(colors);
