@@ -1,0 +1,15 @@
+=== 0.2.1 ===
+
+* Fixed bug where asin, acos, and atan were not calculated correctly in degrees mode
+
+
+=== 0.2 ===
+
+* Added advanced mode
+
+* Fixed bug where navigation link colors were not updated with preferences change
+
+
+=== 0.1 ===
+
+* Initial release to Chrome webstore, basic mode only

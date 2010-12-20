@@ -730,13 +730,22 @@ function __parse(src, degrees, err_off, err_la) {
                     rval = Math.abs(vstack[vstack.length - 2]);
                     break;
                 case 11:
-                    rval = Math.asin(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = (180 / Math.PI) * Math.asin(vstack[vstack.length - 2]);
+                    else
+                        rval = Math.asin(vstack[vstack.length - 2]);
                     break;
                 case 12:
-                    rval = Math.acos(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = (180 / Math.PI) * Math.acos(vstack[vstack.length - 2]);
+                    else
+                        rval = Math.acos(vstack[vstack.length - 2]);
                     break;
                 case 13:
-                    rval = Math.atan(vstack[vstack.length - 2]);
+                    if (degrees)
+                        rval = (180 / Math.PI) * Math.atan(vstack[vstack.length - 2]);
+                    else
+                        rval = Math.atan(vstack[vstack.length - 2]);
                     break;
                 case 14:
                     if (degrees)
