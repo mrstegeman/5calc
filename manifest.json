@@ -1,7 +1,7 @@
 {
     "name": "5calc",
-    "description": "A simple HTML5-based calculator with built-in theming abilities.",
-    "version": "0.1",
+    "description": "An HTML5-based calculator with built-in theming abilities.",
+    "version": "0.2",
     "app": {
         "launch": {
             "local_path": "basic.html"

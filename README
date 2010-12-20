@@ -1,6 +1,11 @@
 Description:
 
-5calc is a simple HTML5-based calculator with built-in theming abilities.
+5calc is an HTML5-based calculator with built-in theming abilities.
+
+
+Chrome app:
+
+https://chrome.google.com/webstore/detail/jcbncbadgbbcfnlfmhjbndifohmeckib/
 
 
 Usage:
@@ -11,3 +16,42 @@ Usage:
 Requirements:
 
 No extra requirements as of yet.
+
+
+Keyboard Shortcuts:
++ ......... Add
+- ......... Subtract
+/ ......... Divide
+* ......... Multiply
+= ......... Calculate
+Enter ..... Calculate
+Escape .... Clear
+Backspace . Backspace
+( ......... Left paren
+) ......... Right paren
+. ......... Decimal
+0 ......... Zero
+1 ......... One
+2 ......... Two
+3 ......... Three
+4 ......... Four
+5 ......... Five
+6 ......... Six
+7 ......... Seven
+8 ......... Eight
+9 ......... Nine
+s ......... Sine
+S ......... Arcsine
+c ......... Cosine
+C ......... Arccosine
+t ......... Tangent
+T ......... Arctangent
+| ......... Pipe (absolute value)
+l ......... Log (base 10)
+n ......... Natural log (base E)
+! ......... Factorial
+r ......... Square root == x^(1/2)
+% ......... Modulus (remainder)
+^ ......... Exponent
+p ......... Pi
+e ......... E
