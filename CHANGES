@@ -1,3 +1,8 @@
+=== 0.2.2 ===
+
+* Fixed bug where multiply and divide don't work correctly in basic mode
+
+
 === 0.2.1 ===
 
 * Fixed bug where asin, acos, and atan were not calculated correctly in degrees mode

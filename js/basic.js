@@ -30,9 +30,9 @@ function key_press(evt, div_id) {
     else if (c == 57 || id == 'nine')
         data = ['nine', '9'];
     else if (c == 47 || id == 'divide')
-        data = ['divide', '÷'];
+        data = ['divide', '/'];
     else if (c == 42 || id == 'multiply')
-        data = ['multiply', '×'];
+        data = ['multiply', '*'];
     else if (c == 45 || id == 'subtract')
         data = ['subtract', '-'];
     else if (c == 46 || id == 'dot')
