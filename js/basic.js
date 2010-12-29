@@ -30,15 +30,15 @@ function key_press(evt, div_id) {
     else if (c == 57 || id == 'nine')
         data = ['nine', '9'];
     else if (c == 47 || id == 'divide')
-        data = ['divide', '/'];
+        data = ['divide', ' / '];
     else if (c == 42 || c == 120 || id == 'multiply')
-        data = ['multiply', '*'];
+        data = ['multiply', ' * '];
     else if (c == 45 || id == 'subtract')
-        data = ['subtract', '-'];
+        data = ['subtract', ' - '];
     else if (c == 46 || id == 'dot')
         data = ['dot', '.'];
     else if (c == 43 || id == 'add')
-        data = ['add', '+'];
+        data = ['add', ' + '];
     else if (c == 40 || id == 'lparen')
         data = ['lparen', '('];
     else if (c == 41 || id == 'rparen')

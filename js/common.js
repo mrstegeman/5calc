@@ -44,8 +44,15 @@ function scroll_left() {
 function append_data(str) {
     var disp = document.getElementById('display');
 
-    if (disp.innerHTML == '0')
-        disp.innerHTML = str;
+    if (disp.innerHTML == '0') {
+        if (str.length == 3 && str[0] == ' ' && str[2] == ' ')
+            disp.innerHTML = str[1];
+        else
+            disp.innerHTML = str;
+    }
+    else if (disp.innerHTML[disp.innerHTML.length - 1] == '(' &&
+                str.length == 3 && str[0] == ' ' && str[2] == ' ')
+        disp.innerHTML += str[1];
     else
         disp.innerHTML += str;
 }
@@ -53,7 +60,12 @@ function append_data(str) {
 function cut_data() {
     var disp = document.getElementById('display');
 
-    disp.innerHTML = disp.innerHTML.substring(0, disp.innerHTML.length - 1);
+    if (disp.innerHTML[disp.innerHTML.length - 1] == ' ' &&
+            disp.innerHTML[disp.innerHTML.length - 3] == ' ')
+        disp.innerHTML = disp.innerHTML.substring(0, disp.innerHTML.length - 3);
+    else
+        disp.innerHTML = disp.innerHTML.substring(0, disp.innerHTML.length - 1);
+
     if (disp.innerHTML == '')
         disp.innerHTML = '0';
 }
