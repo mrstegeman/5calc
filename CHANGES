@@ -1,3 +1,8 @@
+=== 0.2.3.1 ===
+
+* Fixed malformed expression with new precision fix
+
+
 === 0.2.3 ===
 
 * Fixed precision issues (hopefully)

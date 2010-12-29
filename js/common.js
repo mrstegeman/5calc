@@ -20,6 +20,8 @@ function calculate() {
         while (res[res.length - 1] == '0') {
             res = res.substring(0, res.length - 1);
         }
+        if (res[res.length - 1] == '.')
+            res = res.substring(0, res.length - 1);
         disp.innerHTML = res;
     }
 }
