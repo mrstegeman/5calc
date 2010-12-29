@@ -16,7 +16,11 @@ function calculate() {
         error.innerHTML = 'Malformed expression';
     else {
         error.innerHTML = '';
-        disp.innerHTML = result.res;
+        var res = result.res.toFixed(10).toString();
+        while (res[res.length - 1] == '0') {
+            res = res.substring(0, res.length - 1);
+        }
+        disp.innerHTML = res;
     }
 }
 
@@ -50,7 +54,8 @@ function append_data(str) {
         else
             disp.innerHTML = str;
     }
-    else if (disp.innerHTML[disp.innerHTML.length - 1] == '(' &&
+    else if ((disp.innerHTML[disp.innerHTML.length - 1] == '(' ||
+                disp.innerHTML[disp.innerHTML.length - 1] == '|' ) &&
                 str.length == 3 && str[0] == ' ' && str[2] == ' ')
         disp.innerHTML += str[1];
     else
