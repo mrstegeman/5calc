@@ -31,7 +31,7 @@ function key_press(evt, div_id) {
         data = ['nine', '9'];
     else if (c == 47 || id == 'divide')
         data = ['divide', '/'];
-    else if (c == 42 || id == 'multiply')
+    else if (c == 42 || c == 120 || id == 'multiply')
         data = ['multiply', '*'];
     else if (c == 45 || id == 'subtract')
         data = ['subtract', '-'];
@@ -62,7 +62,7 @@ function key_down(evt, div_id) {
             setTimeout("button_click('clr', 2)", 150);
         reset();
     }
-    else if (k == 8 || id == 'bksp') { // backspace
+    else if (k == 8 || k == 46 || id == 'bksp') { // backspace/delete
         button_click('bksp', 1);
         if (id)
             setTimeout("button_click('bksp', 2)", 150);

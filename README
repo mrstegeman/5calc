@@ -19,14 +19,17 @@ No extra requirements as of yet.
 
 
 Keyboard Shortcuts:
+
 + ......... Add
 - ......... Subtract
 / ......... Divide
 * ......... Multiply
+x ......... Multiply
 = ......... Calculate
 Enter ..... Calculate
 Escape .... Clear
 Backspace . Backspace
+Delete .... Backspace
 ( ......... Left paren
 ) ......... Right paren
 . ......... Decimal
@@ -51,7 +54,7 @@ l ......... Log (base 10)
 n ......... Natural log (base E)
 ! ......... Factorial
 r ......... Square root == x^(1/2)
-% ......... Modulus (remainder)
+% ......... Modulo (remainder)
 ^ ......... Exponent
 p ......... Pi
 e ......... E
