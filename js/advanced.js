@@ -110,7 +110,7 @@ function key_up(evt) {
 
     if (k == 27) // escape
         button_click('clr', 2);
-    else if (k == 8) // backspace
+    else if (k == 8 || k == 46) // backspace/delete
         button_click('bksp', 2);
     else if (k == 13) // enter
         button_click('equals', 2);
